@@ -10,12 +10,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-sunshine/10 via-ocean/10 to-lavender/10">
       <Header />
-      {/* Add top padding to account for fixed header */}
+      {/* Remove top padding since header is no longer fixed */}
       <motion.main 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-8 pt-32"
+        className="container mx-auto px-4 py-8"
       >
         {children}
       </motion.main>
