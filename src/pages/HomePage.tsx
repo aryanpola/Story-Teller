@@ -225,7 +225,7 @@ const HomePage: React.FC = () => {
         </ParallaxSection>
       ) : (
         <>
-          {/* Featured Stories with Parallax */}
+          {/* Featured Stories with Parallax - Constrained Width */}
           <ParallaxSection speed={0.08}>
             <motion.section 
               initial={{ opacity: 0 }}
@@ -242,7 +242,8 @@ const HomePage: React.FC = () => {
                   ⭐ Featured Adventures ⭐
                 </h2>
               </motion.div>
-              <div className="space-y-8">
+              {/* Constrained container for featured stories */}
+              <div className="max-w-5xl mx-auto space-y-8">
                 {featuredStories.map((story, index) => (
                   <ParallaxSection key={story._id} speed={0.03 + index * 0.01}>
                     <StoryCard story={story} isFeatured={true} index={index} />
