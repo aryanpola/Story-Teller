@@ -39,13 +39,13 @@ const HomePage: React.FC = () => {
   };
 
   const categoryColors = {
-    fantasy: 'from-purple-400 to-pink-400',
-    adventure: 'from-blue-400 to-cyan-400',
-    educational: 'from-green-400 to-emerald-400',
-    friendship: 'from-pink-400 to-rose-400',
-    nature: 'from-green-400 to-teal-400',
-    family: 'from-orange-400 to-red-400',
-    mystery: 'from-indigo-400 to-purple-400'
+    fantasy: 'from-violet-200 to-purple-200',
+    adventure: 'from-sky-200 to-cyan-200',
+    educational: 'from-emerald-200 to-teal-200',
+    friendship: 'from-rose-200 to-pink-200',
+    nature: 'from-green-200 to-emerald-200',
+    family: 'from-orange-200 to-amber-200',
+    mystery: 'from-indigo-200 to-violet-200'
   };
 
   useEffect(() => {
@@ -156,13 +156,13 @@ const HomePage: React.FC = () => {
 
   const renderStoryCard = (story: Story, isFeatured = false) => {
     const CategoryIcon = categoryIcons[story.category as keyof typeof categoryIcons] || BookOpen;
-    const categoryColor = categoryColors[story.category as keyof typeof categoryColors] || 'from-purple-400 to-pink-400';
+    const categoryColor = categoryColors[story.category as keyof typeof categoryColors] || 'from-violet-200 to-purple-200';
     
     return (
       <Link 
         to={`/story/${story._id}`} 
         key={story._id} 
-        className={`group block ${isFeatured ? 'md:flex' : ''} bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-4 border-transparent hover:border-yellow-300 ${isFeatured ? 'mb-8' : 'mb-6'}`}
+        className={`group block ${isFeatured ? 'md:flex' : ''} bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 border-4 border-transparent hover:border-amber-200 ${isFeatured ? 'mb-8' : 'mb-6'}`}
       >
         <div className={`relative ${isFeatured ? 'md:w-1/2' : 'w-full'} ${isFeatured ? 'h-64' : 'h-48'} overflow-hidden`}>
           <img 
@@ -173,26 +173,26 @@ const HomePage: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
           
           {/* Category Badge */}
-          <div className={`absolute top-4 right-4 bg-gradient-to-r ${categoryColor} text-white px-4 py-2 rounded-full shadow-lg flex items-center space-x-2`}>
+          <div className={`absolute top-4 right-4 bg-gradient-to-r ${categoryColor} text-gray-700 px-4 py-2 rounded-full shadow-lg flex items-center space-x-2 border-2 border-white/50`}>
             <CategoryIcon className="h-4 w-4" />
             <span className="font-bold text-sm capitalize">{story.category}</span>
           </div>
           
           {/* Age Badge */}
-          <div className="absolute bottom-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-4 py-2 rounded-full shadow-lg">
+          <div className="absolute bottom-4 left-4 bg-gradient-to-r from-amber-200 to-yellow-200 text-amber-700 px-4 py-2 rounded-full shadow-lg border-2 border-white/50">
             <span className="font-bold text-sm">Ages {story.ageRange}</span>
           </div>
           
           {/* Play Button Overlay */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-xl">
-              <Play className="h-8 w-8 text-purple-600" />
+            <div className="bg-white/90 backdrop-blur-sm rounded-full p-4 shadow-xl border-4 border-violet-200">
+              <Play className="h-8 w-8 text-violet-600" />
             </div>
           </div>
         </div>
         
         <div className={`p-6 ${isFeatured ? 'md:w-1/2' : ''} ${isFeatured ? 'md:p-8' : ''}`}>
-          <h3 className={`${isFeatured ? 'text-2xl' : 'text-xl'} font-black mb-3 text-gray-800 group-hover:text-purple-600 transition-colors`}>
+          <h3 className={`${isFeatured ? 'text-2xl' : 'text-xl'} font-black mb-3 text-gray-800 group-hover:text-violet-600 transition-colors`}>
             {story.title.en}
           </h3>
           <p className={`text-gray-600 mb-4 ${isFeatured ? 'text-lg' : 'text-base'} leading-relaxed`}>
@@ -201,17 +201,17 @@ const HomePage: React.FC = () => {
           
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-1 bg-yellow-100 px-3 py-1 rounded-full">
-                <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                <span className="font-bold text-yellow-700">{story.stats.averageRating.toFixed(1)}</span>
+              <div className="flex items-center space-x-1 bg-amber-100 px-3 py-1 rounded-full border-2 border-amber-200">
+                <Star className="h-4 w-4 text-amber-500 fill-current" />
+                <span className="font-bold text-amber-700">{story.stats.averageRating.toFixed(1)}</span>
               </div>
-              <div className="flex items-center space-x-1 bg-blue-100 px-3 py-1 rounded-full">
-                <Eye className="h-4 w-4 text-blue-500" />
-                <span className="font-bold text-blue-700">{story.stats.views}</span>
+              <div className="flex items-center space-x-1 bg-sky-100 px-3 py-1 rounded-full border-2 border-sky-200">
+                <Eye className="h-4 w-4 text-sky-500" />
+                <span className="font-bold text-sky-700">{story.stats.views}</span>
               </div>
             </div>
             
-            <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full font-bold text-sm group-hover:from-purple-600 group-hover:to-pink-600 transition-all">
+            <div className="bg-gradient-to-r from-violet-200 to-purple-200 text-violet-700 px-4 py-2 rounded-full font-bold text-sm group-hover:from-violet-300 group-hover:to-purple-300 transition-all border-2 border-violet-300">
               Read Story!
             </div>
           </div>
@@ -224,8 +224,8 @@ const HomePage: React.FC = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="mb-16 text-center">
-        <div className="bg-gradient-to-r from-pink-200 via-purple-200 to-blue-200 rounded-3xl p-12 mb-12 shadow-xl border-4 border-yellow-300">
-          <h1 className="text-6xl font-black bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-6">
+        <div className="bg-gradient-to-r from-rose-100 via-violet-100 to-sky-100 rounded-3xl p-12 mb-12 shadow-xl border-4 border-amber-200">
+          <h1 className="text-6xl font-black bg-gradient-to-r from-violet-600 via-rose-600 to-sky-600 bg-clip-text text-transparent mb-6">
             Welcome to StoryLand! 🌟
           </h1>
           <p className="text-2xl text-gray-700 mb-8 font-bold">
@@ -233,14 +233,14 @@ const HomePage: React.FC = () => {
           </p>
           <Link 
             to="/create-story" 
-            className="inline-flex items-center space-x-3 bg-gradient-to-r from-green-400 to-emerald-500 text-white px-8 py-4 rounded-full text-xl font-black hover:from-green-500 hover:to-emerald-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+            className="inline-flex items-center space-x-3 bg-gradient-to-r from-emerald-200 to-teal-200 text-emerald-700 px-8 py-4 rounded-full text-xl font-black hover:from-emerald-300 hover:to-teal-300 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 border-4 border-emerald-300"
           >
             <Sparkles className="h-6 w-6" />
             <span>Create Your Own Story!</span>
           </Link>
         </div>
         
-        <div className="bg-gradient-to-r from-blue-100 to-purple-100 border-4 border-blue-300 text-blue-800 px-6 py-4 rounded-2xl mb-8 shadow-lg">
+        <div className="bg-gradient-to-r from-sky-100 to-violet-100 border-4 border-sky-200 text-sky-700 px-6 py-4 rounded-2xl mb-8 shadow-lg">
           <p className="font-bold text-lg">🎭 Demo Mode Active!</p>
           <p className="text-base">We're showing you some amazing sample stories. In the real version, there would be hundreds more!</p>
         </div>
@@ -248,11 +248,11 @@ const HomePage: React.FC = () => {
 
       {isLoading ? (
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="animate-spin rounded-full h-16 w-16 border-8 border-purple-200 border-t-purple-500 mb-4"></div>
-          <p className="text-2xl font-bold text-purple-600">Loading magical stories...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-8 border-violet-200 border-t-violet-400 mb-4"></div>
+          <p className="text-2xl font-bold text-violet-600">Loading magical stories...</p>
         </div>
       ) : error ? (
-        <div className="bg-red-100 border-4 border-red-400 text-red-700 px-6 py-4 rounded-2xl mb-8 text-center">
+        <div className="bg-rose-100 border-4 border-rose-300 text-rose-700 px-6 py-4 rounded-2xl mb-8 text-center">
           <p className="font-bold text-lg">{error}</p>
         </div>
       ) : (
@@ -260,7 +260,7 @@ const HomePage: React.FC = () => {
           {/* Featured Stories */}
           <section className="mb-16">
             <div className="flex items-center justify-center mb-8">
-              <h2 className="text-4xl font-black text-center bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <h2 className="text-4xl font-black text-center bg-gradient-to-r from-violet-600 to-rose-600 bg-clip-text text-transparent">
                 ⭐ Featured Adventures ⭐
               </h2>
             </div>
@@ -272,7 +272,7 @@ const HomePage: React.FC = () => {
           {/* Recent Stories */}
           <section className="mb-16">
             <div className="flex items-center justify-center mb-8">
-              <h2 className="text-4xl font-black text-center bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <h2 className="text-4xl font-black text-center bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">
                 🆕 Brand New Stories 🆕
               </h2>
             </div>
@@ -284,30 +284,30 @@ const HomePage: React.FC = () => {
       )}
       
       {/* How It Works Section */}
-      <section className="bg-gradient-to-r from-yellow-100 via-pink-100 to-purple-100 p-12 rounded-3xl shadow-xl mb-16 border-4 border-yellow-300">
-        <h3 className="text-4xl font-black text-center mb-12 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+      <section className="bg-gradient-to-r from-amber-100 via-rose-100 to-violet-100 p-12 rounded-3xl shadow-xl mb-16 border-4 border-amber-200">
+        <h3 className="text-4xl font-black text-center mb-12 bg-gradient-to-r from-violet-600 to-rose-600 bg-clip-text text-transparent">
           🎯 How StoryLand Works 🎯
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-8 rounded-3xl shadow-xl text-center transform hover:scale-105 transition-all duration-300 border-4 border-purple-200">
+          <div className="bg-white p-8 rounded-3xl shadow-xl text-center transform hover:scale-105 transition-all duration-300 border-4 border-violet-200">
             <div className="text-6xl mb-6">📚</div>
-            <h4 className="text-2xl font-black mb-4 text-purple-700">1. Pick a Story</h4>
+            <h4 className="text-2xl font-black mb-4 text-violet-700">1. Pick a Story</h4>
             <p className="text-gray-600 text-lg leading-relaxed">
               Choose from lots of fun stories about magic, adventure, and friendship!
             </p>
           </div>
           
-          <div className="bg-white p-8 rounded-3xl shadow-xl text-center transform hover:scale-105 transition-all duration-300 border-4 border-pink-200">
+          <div className="bg-white p-8 rounded-3xl shadow-xl text-center transform hover:scale-105 transition-all duration-300 border-4 border-rose-200">
             <div className="text-6xl mb-6">🤔</div>
-            <h4 className="text-2xl font-black mb-4 text-pink-700">2. Make Choices</h4>
+            <h4 className="text-2xl font-black mb-4 text-rose-700">2. Make Choices</h4>
             <p className="text-gray-600 text-lg leading-relaxed">
               YOU decide what happens next! Every choice leads to a different adventure!
             </p>
           </div>
           
-          <div className="bg-white p-8 rounded-3xl shadow-xl text-center transform hover:scale-105 transition-all duration-300 border-4 border-blue-200">
+          <div className="bg-white p-8 rounded-3xl shadow-xl text-center transform hover:scale-105 transition-all duration-300 border-4 border-sky-200">
             <div className="text-6xl mb-6">🎉</div>
-            <h4 className="text-2xl font-black mb-4 text-blue-700">3. Discover Endings</h4>
+            <h4 className="text-2xl font-black mb-4 text-sky-700">3. Discover Endings</h4>
             <p className="text-gray-600 text-lg leading-relaxed">
               Each story has many different endings! Try again to find them all!
             </p>

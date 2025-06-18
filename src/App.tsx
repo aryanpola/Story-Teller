@@ -17,7 +17,9 @@ function App() {
     <Router>
       <AuthProvider>
         <LanguageProvider>
-          <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 via-blue-50 to-yellow-50">
+          <div className="min-h-screen bg-gradient-to-br from-rose-50 via-sky-50 via-lavender-50 to-mint-50" style={{
+            background: 'linear-gradient(135deg, #fdf2f8 0%, #f0f9ff 25%, #f3e8ff 50%, #f0fdfa 75%, #fffbeb 100%)'
+          }}>
             <Header />
             <main className="container mx-auto px-4 py-8">
               <Routes>

@@ -13,8 +13,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, adminOnly = f
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-64">
-        <div className="animate-spin rounded-full h-16 w-16 border-8 border-purple-200 border-t-purple-500 mb-4"></div>
-        <p className="text-2xl font-bold text-purple-600">Loading magical content...</p>
+        <div className="animate-spin rounded-full h-16 w-16 border-8 border-violet-200 border-t-violet-400 mb-4"></div>
+        <p className="text-2xl font-bold text-violet-600">Loading magical content...</p>
       </div>
     );
   }
