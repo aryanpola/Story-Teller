@@ -4,6 +4,7 @@ import { Sparkles, Heart, Rocket, TreePine, Users, BookOpen, Star, Eye } from 'l
 import { motion } from 'framer-motion';
 import StoryCard from '../components/StoryCard';
 import Button from '../components/Button';
+import ParallaxSection from '../components/ParallaxSection';
 
 interface Story {
   _id: string;
@@ -122,193 +123,210 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="mb-16 text-center"
-      >
-        <div className="bg-gradient-to-r from-sunshine/20 via-ocean/20 to-lavender/20 rounded-3xl p-12 mb-12 shadow-2xl border-4 border-sunshine/50 relative overflow-hidden">
-          {/* Floating decorative elements */}
-          <motion.div 
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 4, repeat: Infinity }}
-            className="absolute top-4 left-4 text-4xl"
-          >
-            ⭐
-          </motion.div>
-          <motion.div 
-            animate={{ y: [10, -10, 10] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute top-8 right-8 text-3xl"
-          >
-            🌈
-          </motion.div>
-          <motion.div 
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-4 left-8 text-3xl"
-          >
-            ✨
-          </motion.div>
+      {/* Hero Section with Parallax */}
+      <ParallaxSection speed={0.1}>
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="mb-16 text-center"
+        >
+          <div className="bg-gradient-to-r from-sunshine/20 via-ocean/20 to-lavender/20 rounded-3xl p-12 mb-12 shadow-2xl border-4 border-sunshine/50 relative overflow-hidden backdrop-blur-sm">
+            {/* Floating decorative elements */}
+            <motion.div 
+              animate={{ y: [-10, 10, -10] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="absolute top-4 left-4 text-4xl"
+            >
+              ⭐
+            </motion.div>
+            <motion.div 
+              animate={{ y: [10, -10, 10] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute top-8 right-8 text-3xl"
+            >
+              🌈
+            </motion.div>
+            <motion.div 
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+              className="absolute bottom-4 left-8 text-3xl"
+            >
+              ✨
+            </motion.div>
+            
+            <motion.h1 
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-6xl md:text-7xl font-heading font-black bg-gradient-to-r from-sunshine via-coral to-ocean bg-clip-text text-transparent mb-6 leading-tight"
+            >
+              Welcome to StoryLand! 🌟
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-2xl md:text-3xl text-gray-700 mb-8 font-body font-bold leading-relaxed"
+            >
+              Where every story is an adventure waiting for YOU! ✨
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Link to="/create-story">
+                <Button variant="success" size="xl" icon={Sparkles}>
+                  Create Your Own Story! 🎨
+                </Button>
+              </Link>
+            </motion.div>
+          </div>
           
-          <motion.h1 
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-6xl md:text-7xl font-heading font-black bg-gradient-to-r from-sunshine via-coral to-ocean bg-clip-text text-transparent mb-6 leading-tight"
-          >
-            Welcome to StoryLand! 🌟
-          </motion.h1>
-          <motion.p 
+          <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-2xl md:text-3xl text-gray-700 mb-8 font-body font-bold leading-relaxed"
+            transition={{ delay: 0.8 }}
+            className="bg-gradient-to-r from-ocean/20 to-lavender/20 border-4 border-ocean/50 text-ocean px-6 py-4 rounded-2xl mb-8 shadow-lg backdrop-blur-sm"
           >
-            Where every story is an adventure waiting for YOU! ✨
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            <Link to="/create-story">
-              <Button variant="success" size="xl" icon={Sparkles}>
-                Create Your Own Story! 🎨
-              </Button>
-            </Link>
+            <p className="font-heading font-bold text-xl">🎭 Demo Mode Active!</p>
+            <p className="text-lg font-body">We're showing you some amazing sample stories. In the real version, there would be hundreds more!</p>
           </motion.div>
-        </div>
-        
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="bg-gradient-to-r from-ocean/20 to-lavender/20 border-4 border-ocean/50 text-ocean px-6 py-4 rounded-2xl mb-8 shadow-lg"
-        >
-          <p className="font-heading font-bold text-xl">🎭 Demo Mode Active!</p>
-          <p className="text-lg font-body">We're showing you some amazing sample stories. In the real version, there would be hundreds more!</p>
-        </motion.div>
-      </motion.section>
+        </motion.section>
+      </ParallaxSection>
 
       {isLoading ? (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="flex flex-col items-center justify-center py-20"
-        >
+        <ParallaxSection speed={0.05}>
           <motion.div 
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="w-20 h-20 border-8 border-sunshine/30 border-t-sunshine rounded-full mb-6"
-          />
-          <motion.p 
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-3xl font-heading font-bold text-sunshine"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-col items-center justify-center py-20"
           >
-            Loading magical stories... ✨
-          </motion.p>
-        </motion.div>
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="w-20 h-20 border-8 border-sunshine/30 border-t-sunshine rounded-full mb-6"
+            />
+            <motion.p 
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-3xl font-heading font-bold text-sunshine"
+            >
+              Loading magical stories... ✨
+            </motion.p>
+          </motion.div>
+        </ParallaxSection>
       ) : error ? (
-        <div className="bg-coral/20 border-4 border-coral/50 text-coral px-6 py-4 rounded-2xl mb-8 text-center">
-          <p className="font-heading font-bold text-xl">{error}</p>
-        </div>
+        <ParallaxSection speed={0.05}>
+          <div className="bg-coral/20 border-4 border-coral/50 text-coral px-6 py-4 rounded-2xl mb-8 text-center backdrop-blur-sm">
+            <p className="font-heading font-bold text-xl">{error}</p>
+          </div>
+        </ParallaxSection>
       ) : (
         <>
-          {/* Featured Stories */}
-          <motion.section 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="mb-16"
-          >
-            <motion.div 
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              className="flex items-center justify-center mb-12"
+          {/* Featured Stories with Parallax */}
+          <ParallaxSection speed={0.08}>
+            <motion.section 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="mb-16"
             >
-              <h2 className="text-5xl md:text-6xl font-heading font-black text-center bg-gradient-to-r from-sunshine via-coral to-ocean bg-clip-text text-transparent">
-                ⭐ Featured Adventures ⭐
-              </h2>
-            </motion.div>
-            <div className="space-y-8">
-              {featuredStories.map((story, index) => (
-                <StoryCard key={story._id} story={story} isFeatured={true} index={index} />
-              ))}
-            </div>
-          </motion.section>
+              <motion.div 
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                className="flex items-center justify-center mb-12"
+              >
+                <h2 className="text-5xl md:text-6xl font-heading font-black text-center bg-gradient-to-r from-sunshine via-coral to-ocean bg-clip-text text-transparent">
+                  ⭐ Featured Adventures ⭐
+                </h2>
+              </motion.div>
+              <div className="space-y-8">
+                {featuredStories.map((story, index) => (
+                  <ParallaxSection key={story._id} speed={0.03 + index * 0.01}>
+                    <StoryCard story={story} isFeatured={true} index={index} />
+                  </ParallaxSection>
+                ))}
+              </div>
+            </motion.section>
+          </ParallaxSection>
           
-          {/* Recent Stories */}
-          <motion.section 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="mb-16"
-          >
-            <motion.div 
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              className="flex items-center justify-center mb-12"
+          {/* Recent Stories with Parallax */}
+          <ParallaxSection speed={0.06}>
+            <motion.section 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="mb-16"
             >
-              <h2 className="text-5xl md:text-6xl font-heading font-black text-center bg-gradient-to-r from-mint via-ocean to-lavender bg-clip-text text-transparent">
-                🆕 Brand New Stories 🆕
-              </h2>
-            </motion.div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {recentStories.map((story, index) => (
-                <StoryCard key={story._id} story={story} index={index} />
-              ))}
-            </div>
-          </motion.section>
+              <motion.div 
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                className="flex items-center justify-center mb-12"
+              >
+                <h2 className="text-5xl md:text-6xl font-heading font-black text-center bg-gradient-to-r from-mint via-ocean to-lavender bg-clip-text text-transparent">
+                  🆕 Brand New Stories 🆕
+                </h2>
+              </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {recentStories.map((story, index) => (
+                  <ParallaxSection key={story._id} speed={0.02 + index * 0.005}>
+                    <StoryCard story={story} index={index} />
+                  </ParallaxSection>
+                ))}
+              </div>
+            </motion.section>
+          </ParallaxSection>
         </>
       )}
       
-      {/* How It Works Section */}
-      <motion.section 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.4 }}
-        className="bg-gradient-to-r from-lemon/20 via-coral/20 to-lavender/20 p-12 rounded-3xl shadow-2xl mb-16 border-4 border-lemon/50"
-      >
-        <motion.h3 
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          className="text-5xl md:text-6xl font-heading font-black text-center mb-12 bg-gradient-to-r from-sunshine via-coral to-ocean bg-clip-text text-transparent"
+      {/* How It Works Section with Parallax */}
+      <ParallaxSection speed={0.04}>
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.4 }}
+          className="bg-gradient-to-r from-lemon/20 via-coral/20 to-lavender/20 p-12 rounded-3xl shadow-2xl mb-16 border-4 border-lemon/50 backdrop-blur-sm"
         >
-          🎯 How StoryLand Works 🎯
-        </motion.h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { emoji: '📚', title: '1. Pick a Story', desc: 'Choose from lots of fun stories about magic, adventure, and friendship!', color: 'from-lavender to-purple-400' },
-            { emoji: '🤔', title: '2. Make Choices', desc: 'YOU decide what happens next! Every choice leads to a different adventure!', color: 'from-coral to-pink-400' },
-            { emoji: '🎉', title: '3. Discover Endings', desc: 'Each story has many different endings! Try again to find them all!', color: 'from-ocean to-deep-ocean' }
-          ].map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6 + index * 0.2 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-white p-8 rounded-3xl shadow-xl text-center border-4 border-white/50 hover:border-sunshine/50 transition-all duration-300"
-            >
-              <motion.div 
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
-                className="text-7xl mb-6"
-              >
-                {step.emoji}
-              </motion.div>
-              <h4 className="text-2xl md:text-3xl font-heading font-black mb-4 text-gray-800">{step.title}</h4>
-              <p className="text-gray-600 text-lg md:text-xl leading-relaxed font-body font-medium">
-                {step.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
+          <motion.h3 
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            className="text-5xl md:text-6xl font-heading font-black text-center mb-12 bg-gradient-to-r from-sunshine via-coral to-ocean bg-clip-text text-transparent"
+          >
+            🎯 How StoryLand Works 🎯
+          </motion.h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { emoji: '📚', title: '1. Pick a Story', desc: 'Choose from lots of fun stories about magic, adventure, and friendship!', color: 'from-lavender to-purple-400' },
+              { emoji: '🤔', title: '2. Make Choices', desc: 'YOU decide what happens next! Every choice leads to a different adventure!', color: 'from-coral to-pink-400' },
+              { emoji: '🎉', title: '3. Discover Endings', desc: 'Each story has many different endings! Try again to find them all!', color: 'from-ocean to-deep-ocean' }
+            ].map((step, index) => (
+              <ParallaxSection key={index} speed={0.02 + index * 0.01}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.6 + index * 0.2 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="bg-white/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl text-center border-4 border-white/50 hover:border-sunshine/50 transition-all duration-300"
+                >
+                  <motion.div 
+                    animate={{ rotate: [0, 10, -10, 0] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                    className="text-7xl mb-6"
+                  >
+                    {step.emoji}
+                  </motion.div>
+                  <h4 className="text-2xl md:text-3xl font-heading font-black mb-4 text-gray-800">{step.title}</h4>
+                  <p className="text-gray-600 text-lg md:text-xl leading-relaxed font-body font-medium">
+                    {step.desc}
+                  </p>
+                </motion.div>
+              </ParallaxSection>
+            ))}
+          </div>
+        </motion.section>
+      </ParallaxSection>
     </div>
   );
 };

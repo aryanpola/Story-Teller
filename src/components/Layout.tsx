@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Header from './Header';
+import ParallaxBackground from './ParallaxBackground';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,20 +9,24 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sunshine/10 via-ocean/10 to-lavender/10">
+    <div className="min-h-screen bg-gradient-to-br from-sunshine/10 via-ocean/10 to-lavender/10 relative">
+      {/* Parallax Background Elements */}
+      <ParallaxBackground />
+      
       <Header />
-      {/* Remove top padding since header is no longer fixed */}
+      
+      {/* Main Content with higher z-index */}
       <motion.main 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-8"
+        className="container mx-auto px-4 py-8 relative z-10"
       >
         {children}
       </motion.main>
       
       {/* Playful Wave Footer */}
-      <footer className="relative mt-20">
+      <footer className="relative mt-20 z-10">
         <svg 
           className="w-full h-20 text-sunshine" 
           viewBox="0 0 1200 120" 
