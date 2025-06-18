@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+/* Ensure fonts are applied globally */
+.font-heading {
+  font-family: 'Baloo 2', cursive;
+}
+
+.font-body {
+  font-family: 'Nunito', sans-serif;
+}
+
+.font-fun {
+  font-family: 'Fredoka', cursive;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
