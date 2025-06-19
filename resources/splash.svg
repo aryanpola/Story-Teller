@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="2732" height="2732" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="0" y="0" width="2732" height="2732" fill="#FFB703" />
+  
+  <!-- Decorative elements - curved shapes in the corners -->
+  <path d="M0,0 Q800,400 0,800 Z" fill="#219EBC" opacity="0.7" />
+  <path d="M2732,0 Q1932,400 2732,800 Z" fill="#219EBC" opacity="0.7" />
+  <path d="M0,2732 Q800,2332 0,1932 Z" fill="#219EBC" opacity="0.7" />
+  <path d="M2732,2732 Q1932,2332 2732,1932 Z" fill="#219EBC" opacity="0.7" />
+  
+  <!-- Central book and stars elements -->
+  <g transform="translate(980, 950) scale(1.5)">
+    <!-- Open book -->
+    <g>
+      <!-- Left page -->
+      <path d="M100,100 L400,50 L400,650 L100,700 Z" fill="#ffffff" stroke="#333333" stroke-width="15" />
+      <!-- Right page -->
+      <path d="M400,50 L700,100 L700,700 L400,650 Z" fill="#ffffff" stroke="#333333" stroke-width="15" />
+      <!-- Binding -->
+      <path d="M400,50 C400,50 370,55 370,70 C370,85 400,90 400,90 L400,650 C400,650 370,645 370,630 C370,615 400,610 400,610 Z" fill="#FFB703" stroke="#333333" stroke-width="10" />
+    </g>
+    
+    <!-- Text on the book (representing stories) -->
+    <g transform="translate(160, 200)">
+      <rect x="0" y="0" width="120" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="35" width="170" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="70" width="150" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="140" width="180" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="175" width="140" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="210" width="160" height="15" rx="5" fill="#333333" />
+    </g>
+    <g transform="translate(460, 200)">
+      <rect x="0" y="0" width="120" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="35" width="170" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="70" width="150" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="140" width="180" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="175" width="140" height="15" rx="5" fill="#333333" />
+      <rect x="0" y="210" width="160" height="15" rx="5" fill="#333333" />
+    </g>
+  </g>
+  
+  <!-- Stars scattered around -->
+  <circle cx="600" cy="500" r="40" fill="#FFD166" />
+  <circle cx="2100" cy="700" r="60" fill="#FFD166" />
+  <circle cx="1800" cy="400" r="30" fill="#FFD166" />
+  <circle cx="700" cy="2000" r="50" fill="#FFD166" />
+  <circle cx="2200" cy="2100" r="45" fill="#FFD166" />
+  <circle cx="400" cy="1300" r="35" fill="#FFD166" />
+  <circle cx="2300" cy="1500" r="55" fill="#FFD166" />
+  
+  <!-- App name at the bottom -->
+  <text x="1366" y="2200" font-family="Arial" font-weight="bold" font-size="120" text-anchor="middle" fill="#333333">Interactive Storytelling</text>
+</svg>

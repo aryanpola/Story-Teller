@@ -10,14 +10,25 @@ import AdminPage from './pages/AdminPage';
 import ProfilePage from './pages/ProfilePage';
 import CreateStoryPage from './pages/CreateStoryPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import { useEffect } from 'react';
 // @ts-ignore
 import { useBackgroundImageOnHover } from './hooks/useBackgroundImageOnHover';
+import { initializeApp, isNativePlatform } from './services/capacitorService';
 
 // Import Google Fonts
 import './styles/fonts.css';
 
 function AppContent() {
   useBackgroundImageOnHover();
+  
+  // Initialize Capacitor native features when available
+  useEffect(() => {
+    // Initialize Capacitor plugins
+    initializeApp().catch(console.error);
+    
+    // Log if running on mobile app or web
+    console.log(`Running on ${isNativePlatform() ? 'native mobile' : 'web browser'}`);
+  }, []);
   
   return (
     <Layout>

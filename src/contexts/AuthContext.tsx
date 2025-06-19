@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { storage } from '../services/storageService';
 
 interface User {
   id: string;
@@ -40,16 +41,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    const storedApiKey = localStorage.getItem('apiKey');
-    const storedUser = localStorage.getItem('user');
+    // Load user data from storage (works for both web and mobile)
+    const loadUserData = async () => {
+      try {
+        const storedToken = await storage.get<string>('token');
+        const storedApiKey = await storage.get<string>('apiKey');
+        const storedUser = await storage.get<User>('user');
 
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setApiKey(storedApiKey);
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+        if (storedToken && storedUser) {
+          setToken(storedToken);
+          if (storedApiKey) setApiKey(storedApiKey);
+          setUser(storedUser);
+        }
+      } catch (error) {
+        console.error('Error loading auth data', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    // Execute the async function
+    loadUserData();
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -73,9 +85,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setApiKey(data.apiKey);
       setUser(data.user);
       
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('apiKey', data.apiKey);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      // Save to storage (works for both web and mobile)
+      await storage.set('token', data.token);
+      if (data.apiKey) await storage.set('apiKey', data.apiKey);
+      await storage.set('user', data.user);
     } catch (error) {
       throw error;
     }
@@ -102,21 +115,24 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setApiKey(data.apiKey);
       setUser(data.user);
       
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('apiKey', data.apiKey);
-      localStorage.setItem('user', JSON.stringify(data.user));
+      // Save to storage (works for both web and mobile)
+      await storage.set('token', data.token);
+      if (data.apiKey) await storage.set('apiKey', data.apiKey);
+      await storage.set('user', data.user);
     } catch (error) {
       throw error;
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
     setUser(null);
     setToken(null);
     setApiKey(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('apiKey');
-    localStorage.removeItem('user');
+    
+    // Remove from storage (works for both web and mobile)
+    await storage.remove('token');
+    await storage.remove('apiKey');
+    await storage.remove('user');
   };
 
   const value = {

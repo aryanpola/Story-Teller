@@ -18,7 +18,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
   return (
     <motion.div
       style={parallaxStyle}
-      className={className}
+      className={`w-full max-w-full overflow-hidden ${className}`}
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}

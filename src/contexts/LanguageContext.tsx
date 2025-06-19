@@ -50,6 +50,24 @@ const translations = {
     fr: 'Déconnexion',
     es: 'Cerrar Sesión',
     hi: 'लॉग आउट'
+  },
+  home: {
+    en: 'Home',
+    fr: 'Accueil',
+    es: 'Inicio',
+    hi: 'होम'
+  },
+  language: {
+    en: 'Language',
+    fr: 'Langue',
+    es: 'Idioma',
+    hi: 'भाषा'
+  },
+  menu: {
+    en: 'Menu',
+    fr: 'Menu',
+    es: 'Menú',
+    hi: 'मेनू'
   }
 };
 

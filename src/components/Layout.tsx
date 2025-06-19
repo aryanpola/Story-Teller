@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Header from './Header';
 import ParallaxBackground from './ParallaxBackground';
@@ -8,25 +8,55 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+  // Add meta viewport configuration for mobile devices
+  useEffect(() => {
+    // Ensure proper viewport settings for mobile
+    const metaViewport = document.querySelector('meta[name=viewport]');
+    if (metaViewport) {
+      metaViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
+    }
+    
+    // Prevent overflow on mobile
+    document.body.style.overflow = 'hidden auto';
+    document.documentElement.style.overflow = 'hidden auto';
+    
+    // Add padding-top for status bar on iOS
+    const applyStatusBarHeight = () => {
+      if (window.matchMedia('(display-mode: standalone)').matches) {
+        document.body.classList.add('safe-area-padding-top');
+      }
+    };
+    
+    applyStatusBarHeight();
+    
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      document.body.classList.remove('safe-area-padding-top');
+    };
+  }, []);
+  
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sunshine/10 via-ocean/10 to-lavender/10 relative">
+    <div className="min-h-screen bg-gradient-to-br from-sunshine/10 via-ocean/10 to-lavender/10 relative overflow-hidden">
       {/* Parallax Background Elements */}
       <ParallaxBackground />
       
       <Header />
       
-      {/* Main Content with higher z-index */}
+      {/* Main Content with higher z-index - using max-width for mobile friendliness */}
       <motion.main 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="container mx-auto px-4 py-8 relative z-10"
+        className="w-full max-w-full overflow-hidden px-3 sm:px-4 py-4 sm:py-8 relative z-10"
       >
-        {children}
+        <div className="w-full max-w-[100vw] mx-auto overflow-x-hidden">
+          {children}
+        </div>
       </motion.main>
       
       {/* Playful Wave Footer */}
-      <footer className="relative mt-20 z-10">
+      <footer className="relative mt-10 sm:mt-20 z-10">
         <svg 
           className="w-full h-20 text-sunshine" 
           viewBox="0 0 1200 120" 
