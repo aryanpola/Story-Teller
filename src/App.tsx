@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -11,6 +10,7 @@ import AdminPage from './pages/AdminPage';
 import ProfilePage from './pages/ProfilePage';
 import CreateStoryPage from './pages/CreateStoryPage';
 import ProtectedRoute from './components/ProtectedRoute';
+// @ts-ignore
 import { useBackgroundImageOnHover } from './hooks/useBackgroundImageOnHover';
 
 // Import Google Fonts
