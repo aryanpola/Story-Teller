@@ -14,7 +14,7 @@ html {
 
 /* Status bar handling */
 :root {
-  --sat: env(safe-area-inset-top, 24px);
+  --sat: env(safe-area-inset-top, 36px);
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
@@ -23,6 +23,17 @@ html {
 /* Apply safe area insets for notches and status bars */
 .safe-area-padding-top {
   padding-top: var(--sat);
+}
+
+/* Additional iOS-specific status bar padding */
+@supports (-webkit-touch-callout: none) {
+  header {
+    padding-top: max(var(--sat), 36px);
+  }
+  
+  .sidebar {
+    padding-top: max(var(--sat), 36px);
+  }
 }
 
 /* Sidebar menu fixes */
@@ -111,5 +122,29 @@ button, a {
   
   .text-xs {
     font-size: 0.75rem !important;
+  }
+}
+
+/* Mobile container padding for better spacing */
+.mobile-container-padding {
+  padding-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .mobile-container-padding {
+    padding-top: 0.75rem;
+  }
+}
+
+/* Fix iOS and Android specific styling */
+@supports (-webkit-touch-callout: none) or (-webkit-appearance: none) {
+  body {
+    /* Prevent overscroll bounce */
+    overscroll-behavior-y: none;
+  }
+  
+  /* Better handling for fixed position elements */
+  .fixed {
+    position: fixed !important;
   }
 }

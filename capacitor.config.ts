@@ -19,7 +19,10 @@ const config: CapacitorConfig = {
       style: 'light',
       backgroundColor: "#219EBC",
       overlays: true,
-      backgroundColorByHexString: "#219EBC"
+      backgroundColorByHexString: "#219EBC",
+      androidOverlaysWebView: true, // Ensure the status bar overlays the WebView
+      androidNavigationBarVisible: true, // Show the navigation bar
+      androidNavigationBarColor: "#219EBC" // Matching status bar color
     },
     Keyboard: {
       resize: 'body',

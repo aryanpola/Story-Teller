@@ -17,8 +17,8 @@ const Header: React.FC = () => {
     const detectStatusBarHeight = () => {
       // For mobile devices, add padding at the top for the status bar
       if (window.innerWidth <= 768) {
-        // Default height for Android status bar, adjust as needed
-        setStatusBarHeight(24);
+        // Increase default status bar height for Android and iOS devices
+        setStatusBarHeight(36); // Increased from 24 to 36px for better coverage
       } else {
         setStatusBarHeight(0);
       }
@@ -115,7 +115,7 @@ const Header: React.FC = () => {
               )}
             </nav>
 
-            {/* User Menu & Auth Buttons (removed language selector) */}
+            {/* User Menu & Auth Buttons (no language selector) */}
             <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Desktop User Menu */}
               <div className="hidden md:flex items-center space-x-3">
@@ -233,8 +233,8 @@ const Header: React.FC = () => {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-gradient-to-br from-ocean via-lavender to-sunshine z-40 shadow-2xl overflow-y-auto pb-20"
-              style={{ paddingTop: `${statusBarHeight}px` }}
+              className="fixed top-0 left-0 h-full w-3/4 max-w-xs bg-gradient-to-br from-ocean via-lavender to-sunshine z-40 shadow-2xl overflow-y-auto pb-20 sidebar"
+              style={{ paddingTop: `${Math.max(statusBarHeight, 36)}px` }}
             >
               <div className="p-5">
                 <div className="flex justify-between items-center mb-6">

@@ -20,19 +20,34 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     document.body.style.overflow = 'hidden auto';
     document.documentElement.style.overflow = 'hidden auto';
     
-    // Add padding-top for status bar on iOS
+    // Add padding-top for status bar on iOS and Android
     const applyStatusBarHeight = () => {
-      if (window.matchMedia('(display-mode: standalone)').matches) {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+      
+      if (isMobile || isStandalone) {
         document.body.classList.add('safe-area-padding-top');
+        // Add class to all containers for better spacing
+        const containers = document.querySelectorAll('.container');
+        containers.forEach(container => {
+          container.classList.add('mobile-container-padding');
+        });
       }
     };
     
     applyStatusBarHeight();
+    window.addEventListener('resize', applyStatusBarHeight);
     
     return () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
       document.body.classList.remove('safe-area-padding-top');
+      window.removeEventListener('resize', applyStatusBarHeight);
+      
+      const containers = document.querySelectorAll('.container');
+      containers.forEach(container => {
+        container.classList.remove('mobile-container-padding');
+      });
     };
   }, []);
   
