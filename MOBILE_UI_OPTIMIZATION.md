@@ -35,6 +35,20 @@ This document outlines the changes made to optimize the app's UI for mobile devi
 - Added status bar and keyboard plugin configurations
 - Set user-agent overrides for consistent mobile rendering
 
+### 7. Status Bar and Top Content Fixes (Updated June 19, 2025)
+- Increased status bar padding in Header component (36px)
+- Added safe area insets handling for notched devices
+- Enhanced Layout component with dynamic status bar padding
+- Improved Capacitor configuration for status bar handling
+- Added mobile-specific container padding classes
+- Implemented feature detection for iOS and Android specific styling
+
+### 8. UI Consistency Improvements (Updated June 19, 2025)
+- Removed duplicate language selector from header (kept only in sidebar)
+- Enhanced sidebar padding to account for status bar height
+- Applied consistent padding to mobile containers
+- Added dynamic padding adjustments on device rotation
+
 ## Testing on OnePlus 9
 
 The app has been optimized specifically for the OnePlus 9 with the following considerations:

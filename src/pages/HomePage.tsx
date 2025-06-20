@@ -239,7 +239,7 @@ const HomePage: React.FC = () => {
                 className="flex items-center justify-center mb-6 sm:mb-12"
               >
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black text-center bg-gradient-to-r from-sunshine via-coral to-ocean bg-clip-text text-transparent">
-                  ⭐ Featured Adventures ⭐
+                  Featured Adventures
                 </h2>
               </motion.div>
               {/* Constrained container for featured stories - use w-full on mobile */}
