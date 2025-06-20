@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
       await login(email, password);
       navigate('/');
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Oops! Something went wrong. Please try again! 🤗');
+      setError(err.message || 'Oops! Something went wrong. Please try again! 🤗');
       console.error('Login error:', err);
     } finally {
       setIsLoading(false);

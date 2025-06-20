@@ -9,6 +9,7 @@ import StoryReaderPage from './pages/StoryReaderPage';
 import AdminPage from './pages/AdminPage';
 import ProfilePage from './pages/ProfilePage';
 import CreateStoryPage from './pages/CreateStoryPage';
+import TestPage from './pages/TestPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useEffect } from 'react';
 // @ts-ignore
@@ -52,6 +53,7 @@ function AppContent() {
             <AdminPage />
           </ProtectedRoute>
         } />
+        <Route path="/test" element={<TestPage />} />
       </Routes>
     </Layout>
   );

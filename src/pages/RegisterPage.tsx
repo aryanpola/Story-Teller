@@ -8,7 +8,8 @@ const RegisterPage: React.FC = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    parentName: '',
+    fullName: '',
+    username: '',
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +30,7 @@ const RegisterPage: React.FC = () => {
     setError('');
     
     // Basic validation
-    if (!formData.email || !formData.password || !formData.confirmPassword || !formData.parentName) {
+    if (!formData.email || !formData.password || !formData.confirmPassword || !formData.fullName) {
       setError('Please fill in all fields! 😊');
       return;
     }
@@ -49,12 +50,13 @@ const RegisterPage: React.FC = () => {
       const userData = {
         email: formData.email,
         password: formData.password,
-        parentName: formData.parentName
+        fullName: formData.fullName,
+        username: formData.username
       };
       await register(userData);
       navigate('/');
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Oops! Something went wrong. Please try again! 🤗');
+      setError(err.message || 'Oops! Something went wrong. Please try again! 🤗');
       console.error('Registration error:', err);
     } finally {
       setIsLoading(false);
@@ -105,18 +107,36 @@ const RegisterPage: React.FC = () => {
           </div>
           
           <div className="mb-6">
-            <label className="block text-gray-700 text-lg font-black mb-3" htmlFor="parentName">
-              👨‍👩‍👧‍👦 Parent Name
+            <label className="block text-gray-700 text-lg font-black mb-3" htmlFor="fullName">
+              👨‍👩‍👧‍👦 Full Name
             </label>
             <div className="relative">
               <User className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-emerald-400" />
               <input
                 className="w-full pl-12 pr-4 py-4 text-lg border-4 border-emerald-200 rounded-2xl focus:outline-none focus:border-emerald-300 focus:ring-4 focus:ring-emerald-100 transition-all duration-300"
-                id="parentName"
+                id="fullName"
                 type="text"
-                name="parentName"
-                placeholder="Your Name"
-                value={formData.parentName}
+                name="fullName"
+                placeholder="Your Full Name"
+                value={formData.fullName}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          
+          <div className="mb-6">
+            <label className="block text-gray-700 text-lg font-black mb-3" htmlFor="username">
+              🎯 Username (Optional)
+            </label>
+            <div className="relative">
+              <User className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-emerald-400" />
+              <input
+                className="w-full pl-12 pr-4 py-4 text-lg border-4 border-emerald-200 rounded-2xl focus:outline-none focus:border-emerald-300 focus:ring-4 focus:ring-emerald-100 transition-all duration-300"
+                id="username"
+                type="text"
+                name="username"
+                placeholder="Choose a username"
+                value={formData.username}
                 onChange={handleChange}
               />
             </div>

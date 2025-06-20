@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import StoryCard from '../components/StoryCard';
 import Button from '../components/Button';
 import ParallaxSection from '../components/ParallaxSection';
+import MyStoriesList from '../components/MyStoriesList';
+import { useAuth } from '../contexts/AuthContext';
 
 interface Story {
   _id: string;
@@ -31,6 +33,7 @@ const HomePage: React.FC = () => {
   const [recentStories, setRecentStories] = useState<Story[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchStories = async () => {
@@ -328,6 +331,20 @@ const HomePage: React.FC = () => {
           </div>
         </motion.section>
       </ParallaxSection>
+
+      {/* My Stories Section - Only for logged-in users */}
+      {user && (
+        <ParallaxSection speed={0.05}>
+          <motion.section 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.8 }}
+            className="bg-gradient-to-r from-pink-50 to-purple-50 p-4 sm:p-8 md:p-12 rounded-3xl shadow-2xl mb-8 sm:mb-16 border-4 border-pink-200 backdrop-blur-sm mx-2"
+          >
+            <MyStoriesList />
+          </motion.section>
+        </ParallaxSection>
+      )}
     </div>
   );
 };
